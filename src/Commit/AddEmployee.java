@@ -6,7 +6,7 @@ import Storage.Employees;
 import Storage.Mapping;
 
 import java.util.Scanner;
-
+//todo add validation to number imputs
 public class AddEmployee {
     public static void addEmployee() {
         Scanner ae = new Scanner(System.in);
@@ -33,9 +33,10 @@ public class AddEmployee {
         //here we are .putting our employee into employeeDepartmentMap DB by calling .assign() method from Mapping class and storing employeeID AND departmentID into selected department via int assign = ae.nextInt();
         Mapping.assign(employeeID, assign);
         String departmentName = Departments.getDepartments().get(assign); //retrieves department names, using assigned ID by ID understands departmentName...
-        System.out.println(employeeName + " is assigned to selected department: " + departmentName);
+        System.out.println(employeeName + " is assigned to selected department: " + departmentName + "\n");
 
-        System.out.println("Add more? 1=yes | 0=no");
+        System.out.println("1. Add more employees");
+        System.out.println("0. Return back to main menu");
         System.out.print("Input: ");
         int choice = ae.nextInt();
         ae.nextLine();

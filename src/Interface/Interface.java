@@ -7,7 +7,7 @@ import Storage.Employees;
 import Storage.Mapping;
 
 import java.util.Scanner;
-
+//todo add validation to number imputs
 public class Interface {
     public static void mainMenu() {
         Scanner mms = new Scanner(System.in);
@@ -65,7 +65,7 @@ public class Interface {
         while (true) {
             try {
                 System.out.print("Input: ");
-                int choice = Integer.parseInt(vcs.nextLine());
+                int choice = Integer.parseInt(vcs.nextLine()); //need to parse else entering Strings brick whole process
                 if (choice == 0) {
                     Interface.mainMenu();
                     return; //to exit this method entirelly
