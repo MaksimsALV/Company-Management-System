@@ -1,7 +1,7 @@
 package Interface;
 
+import Commit.AddDepartment;
 import Commit.AddEmployee;
-import Commit.CreateDepartment;
 import Storage.Departments;
 import Storage.Employees;
 import Storage.Mapping;
@@ -12,7 +12,7 @@ public class Interface {
     public static void mainMenu() {
         Scanner mms = new Scanner(System.in);
         System.out.println("Welcome to the Main Menu");
-        System.out.println("1. Create New Department");
+        System.out.println("1. Add Department");
         System.out.println("2. Add Employee to the Department");
         System.out.println("3. Display Company Structure");
         System.out.println("0. Exit");
@@ -20,7 +20,7 @@ public class Interface {
         int choice = mms.nextInt();
 
         if (choice == 1) {
-            CreateDepartment.createDepartment();
+            AddDepartment.addDepartment();
         }
         if (choice == 2) {
             AddEmployee.addEmployee();
@@ -38,11 +38,6 @@ public class Interface {
 
         if (Departments.getDepartments().isEmpty()) {
             System.out.println("This company has no departments, type 0 to return back to the main menu");
-            System.out.print("Input: ");
-            int choice = vcs.nextInt();
-            if (choice == 0) {
-                Interface.mainMenu();
-            }
         } else {
             System.out.println("Welcome to the Display Company Structure");
             System.out.println("This is our Company Structure:");
@@ -69,15 +64,16 @@ public class Interface {
 
         while (true) {
             try {
-                int choice = vcs.nextInt();
-                if (choice != 0) {
-                    throw new RuntimeException("Only 0 is allowed here!");
+                System.out.print("Input: ");
+                int choice = Integer.parseInt(vcs.nextLine());
+                if (choice == 0) {
+                    Interface.mainMenu();
+                    return; //to exit this method entirelly
+                } else {
+                    System.out.println("Only 0 is allowed here!");
                 }
-                mainMenu();
-                break;
-            } catch (RuntimeException inputValidation) {
-                System.out.println(inputValidation.getMessage());
-                vcs.nextInt();
+            } catch (NumberFormatException inputValidation) {
+                System.out.println("Only numbers are allowed here!");
             }
         }
     }
