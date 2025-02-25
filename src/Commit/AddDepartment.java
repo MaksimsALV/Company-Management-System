@@ -30,10 +30,10 @@ public class AddDepartment {
                     Interface.mainMenu();
                     return;
                 }
-                System.out.println("Only 1 or 0 is allowed here!");
+                System.out.println("ERROR: Invalid input (Only 1 or 0 is allowed here!)");
 
             } catch (NumberFormatException inputValidation) {
-                System.out.println("Only numbers are allowed here!");
+                System.out.println("ERROR: Invalid input (Only numbers are allowed here!)");
             }
         }
     }

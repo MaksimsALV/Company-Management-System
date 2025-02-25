@@ -4,9 +4,9 @@ import Interface.Interface;
 import Storage.Departments;
 import Storage.Employees;
 import Storage.Mapping;
-
 import java.util.Scanner;
-//todo add validation to number imputs
+
+//todo when there is no departments, then addEmployee shouldn't be available
 public class AddEmployee {
     public static void addEmployee() {
         Scanner ae = new Scanner(System.in);
@@ -33,18 +33,29 @@ public class AddEmployee {
         //here we are .putting our employee into employeeDepartmentMap DB by calling .assign() method from Mapping class and storing employeeID AND departmentID into selected department via int assign = ae.nextInt();
         Mapping.assign(employeeID, assign);
         String departmentName = Departments.getDepartments().get(assign); //retrieves department names, using assigned ID by ID understands departmentName...
-        System.out.println(employeeName + " is assigned to selected department: " + departmentName + "\n");
+        System.out.println(employeeName + " is assigned to selected department: " + departmentName);
+        ae.nextLine(); //starting new scanner line
 
-        System.out.println("1. Add more employees");
-        System.out.println("0. Return back to main menu");
-        System.out.print("Input: ");
-        int choice = ae.nextInt();
-        ae.nextLine();
-        if (choice == 1) {
-            addEmployee();
-        }
-        if (choice == 0) {
-            Interface.mainMenu();
+        while (true) {
+            try {
+                System.out.println("\n1. Add more employees");
+                System.out.println("0. Return back to main menu");
+                System.out.print("Input: ");
+
+                int choice = Integer.parseInt(ae.nextLine()); //need to parse else entering Strings brick whole process
+                if (choice == 1) {
+                    addEmployee();
+                    return; //clean relaunch of method. closes previous method opens new one.
+                }
+                if (choice == 0) {
+                    Interface.mainMenu();
+                    return;
+                }
+                System.out.println("ERROR: Invalid input (Only 1 or 0 is allowed here!)");
+
+            } catch (NumberFormatException inputValidation) {
+                System.out.println("ERROR: Invalid input (Only numbers are allowed here!)");
+            }
         }
     }
 }
