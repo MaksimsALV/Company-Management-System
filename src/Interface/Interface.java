@@ -7,31 +7,44 @@ import Storage.Employees;
 import Storage.Mapping;
 
 import java.util.Scanner;
-//todo add validation to number imputs
+
 public class Interface {
     public static void mainMenu() {
         Scanner mms = new Scanner(System.in);
-        System.out.println("Welcome to the Main Menu");
-        System.out.println("1. Add Department");
-        System.out.println("2. Add Employee to the Department");
-        System.out.println("3. Display Company Structure");
-        System.out.println("0. Exit");
+        while (true) {
+            try {
+                System.out.println("\nWelcome to the Main Menu");
+                System.out.println("1. Add Department");
+                System.out.println("2. Add Employee to the Department");
+                System.out.println("3. Display Company Structure");
+                System.out.println("0. Exit");
+                System.out.print("Input: ");
 
-        int choice = mms.nextInt();
+                int choice = Integer.parseInt(mms.nextLine()); //need to parse else entering Strings brick whole process
 
-        if (choice == 1) {
-            AddDepartment.addDepartment();
-        }
-        if (choice == 2) {
-            AddEmployee.addEmployee();
-        }
-        if (choice == 3) {
-            viewCompanyStructure();
-        }
-        if (choice == 0) {
-            System.exit(0);
+                if (choice == 1) {
+                    AddDepartment.addDepartment();
+                    return; //clean relaunch of method. closes previous one and opens new one.
+                }
+                if (choice == 2) {
+                    AddEmployee.addEmployee();
+                    return; //clean relaunch of method. closes previous one and opens new one.
+                }
+                if (choice == 3) {
+                    viewCompanyStructure();
+                    return; //clean relaunch of method. closes previous one and opens new one.
+                }
+                if (choice == 0) {
+                    System.exit(0);
+                }
+                System.out.println("ERROR: Invalid input (Only mentioned numerical choices allowed here!)");
+
+            } catch (NumberFormatException inputValidation) {
+                System.out.println("ERROR: Invalid input (Only numbers are allowed here!)");
+            }
         }
     }
+
 
     public static void viewCompanyStructure() {
         Scanner vcs = new Scanner(System.in);
@@ -70,10 +83,10 @@ public class Interface {
                     Interface.mainMenu();
                     return; //to exit this method entirelly
                 } else {
-                    System.out.println("Only 0 is allowed here!");
+                    System.out.println("ERROR: Invalid input (Only 0 is allowed here!)");
                 }
             } catch (NumberFormatException inputValidation) {
-                System.out.println("Only numbers are allowed here!");
+                System.out.println("ERROR: Invalid input (Only numbers are allowed here!)");
             }
         }
     }
