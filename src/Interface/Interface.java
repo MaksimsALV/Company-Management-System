@@ -50,7 +50,8 @@ public class Interface {
         Scanner vcs = new Scanner(System.in);
 
         if (Departments.getDepartments().isEmpty()) {
-            System.out.println("This company has no departments, type 0 to return back to the main menu");
+            System.out.println("ERROR: No Departments (This company has no departments! Add Department first!");
+            System.out.println("Type 0 to return back to the main menu");
         } else {
             System.out.println("Welcome to the Display Company Structure");
             System.out.println("This is our Company Structure:");
