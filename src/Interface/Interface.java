@@ -5,12 +5,12 @@ import Commit.AddEmployee;
 import Storage.Departments;
 import Storage.Employees;
 import Storage.Mapping;
-
 import java.util.Scanner;
 
 public class Interface {
     public static void mainMenu() {
         Scanner mms = new Scanner(System.in);
+
         while (true) {
             try {
                 System.out.println("\nWelcome to the Main Menu");
@@ -45,12 +45,11 @@ public class Interface {
         }
     }
 
-
     public static void viewCompanyStructure() {
         Scanner vcs = new Scanner(System.in);
 
         if (Departments.getDepartments().isEmpty()) {
-            System.out.println("ERROR: No Departments (This company has no departments! Add Department first!");
+            System.out.println("ERROR: No Departments (This company has no departments! Add Department first!)");
             System.out.println("Type 0 to return back to the main menu");
         } else {
             System.out.println("Welcome to the Display Company Structure");

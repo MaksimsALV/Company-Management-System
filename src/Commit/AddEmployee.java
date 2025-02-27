@@ -6,8 +6,6 @@ import Storage.Employees;
 import Storage.Mapping;
 import java.util.Scanner;
 
-//todo when there is no departments, then addEmployee shouldn't be available
-//todo something bricks here, process exists
 public class AddEmployee {
     public static void addEmployee() {
         Scanner ae = new Scanner(System.in);
@@ -15,7 +13,7 @@ public class AddEmployee {
         if (Departments.getDepartments().isEmpty()) {
             while (true) {
                 try {
-                System.out.println("\nERROR: No Departments (This company has no departments! Add Department first!");
+                System.out.println("\nERROR: No Departments (This company has no departments! Add Department first!)");
                 System.out.println("Type 0 to return back to the main menu");
                 System.out.print("Input: ");
                 int choice = Integer.parseInt(ae.nextLine()); //need to parse else entering Strings brick whole process
